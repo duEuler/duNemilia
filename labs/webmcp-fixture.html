@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>duNemilia WebMCP laboratory</title></head>
+<body><h1>Disposable WebMCP tools / Ferramentas descartáveis</h1><p>In-memory state only; no credentials, payments or remote calls.</p>
+<button id="reset">Reset counter</button><button id="reload">Reload</button><pre id="status" role="status"></pre>
+<script>
+'use strict';
+(()=>{
+const state={count:0,calls:[],registered:[]};
+const output=()=>document.getElementById('status').textContent=JSON.stringify(state,null,2);
+const tools=[
+{name:'lab_read',description:'Read temporary counter',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true,consequentialHint:false},execute:async()=>{state.calls.push('lab_read');output();return{content:[{type:'text',text:String(state.count)}]}}},
+{name:'lab_increment',description:'Increment temporary counter; requires consent',inputSchema:{type:'object',properties:{amount:{type:'integer',minimum:1,maximum:2}},required:['amount'],additionalProperties:false},annotations:{readOnlyHint:false,consequentialHint:true},execute:async a=>{if(!Number.isInteger(a?.amount)||a.amount<1||a.amount>2)throw Error('Invalid amount');state.count+=a.amount;state.calls.push('lab_increment');output();return{content:[{type:'text',text:String(state.count)}]}}},
+{name:'lab_delayed',description:'Wait for navigation/timeout test',inputSchema:{type:'object',properties:{ms:{type:'integer',minimum:100,maximum:5000}},required:['ms'],additionalProperties:false},annotations:{readOnlyHint:true,consequentialHint:false},execute:async a=>{if(!Number.isInteger(a?.ms)||a.ms<100||a.ms>5000)throw Error('Invalid duration');await new Promise(r=>setTimeout(r,a.ms));state.calls.push('lab_delayed');output();return{content:[{type:'text',text:'finished'}]}}}
+];
+window.__duNemiliaLab={state,tools};
+const context=document.modelContext||navigator.modelContext;
+if(context&&typeof context.registerTool==='function'){
+  for(const tool of tools)try{context.registerTool(tool);state.registered.push(tool.name)}catch(e){state.registered.push(tool.name+': '+e.message)}
+}else state.registered.push('WebMCP unavailable: use Chrome 149+ with feature enabled');
+document.getElementById('reset').addEventListener('click',()=>{state.count=0;state.calls=[];output()});
+document.getElementById('reload').addEventListener('click',()=>location.reload());
+output();
+})();
+</script></body></html>
