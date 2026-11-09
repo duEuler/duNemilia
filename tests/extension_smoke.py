@@ -68,4 +68,12 @@ if __name__=="__main__":
     parser.add_argument("--zip",type=Path,required=True)
     parser.add_argument("--output",type=Path,required=True)
     args=parser.parse_args()
-    asyncio.run(check(args.zip,args.output))
+    try:
+        asyncio.run(check(args.zip,args.output))
+    except Exception as exc:
+        failure={"schema":"duNemilia/extension-smoke/v1","file":args.zip.name,
+                 "status":"FAIL","error_type":type(exc).__name__,"error":str(exc)}
+        args.output.parent.mkdir(parents=True,exist_ok=True)
+        args.output.write_text(json.dumps(failure,indent=2,ensure_ascii=False),encoding="utf-8")
+        print(json.dumps(failure,indent=2,ensure_ascii=False),file=__import__("sys").stderr)
+        raise SystemExit(1)
