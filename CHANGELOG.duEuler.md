@@ -1,5 +1,11 @@
 # duEuler contribution changelog / Registro de alterações
 
+## 2026-11-09 — Phase 5 / Etapa 5
+- Reproduced P5-SEC-001 in isolated private RC 2.3 probe: a synthetic ambiguous error led to two effects; a private fail-closed patch reduced effects to one in 18 scenarios.
+- Added independent WebMCP policy reference, unit tests, private-source path validator, and bilingual security audit.
+- No Nemilia RC 2.3 proprietary artifacts or extension code committed. Real Chrome end-to-end consent remains pending.
+
+
 ## 2026-11-09 — Phase 4 / Etapa 4
 - Added / Adicionado: 9 automated isolated WebMCP fixture tests, including missing-hint risk classification.
 - Expanded Windows/Linux CI to run all JS behavioral tests and Python/HTML integrity checks.
