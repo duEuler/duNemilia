@@ -18,3 +18,10 @@ O script é intencionalmente limitado ao carregamento real do MV3 e popup. Para 
 - Ambiente isolado anterior: Chromium 144 com extensão 2.3; service worker não foi observado em headless e tentativa headed não concluiu. **Não é defeito confirmado do Nemilia.**
 - GitHub Actions é o validador independente para inicialização real da versão pública.
 - Rodadas e relatórios só devem ser declarados PASS quando o workflow concluir.
+
+## Resultados verificáveis — GitHub Actions
+- Primeira falha: run 42704164595, instalação de Playwright Chromium incompatível com `ubuntu-latest` apontando para Ubuntu 26.04.
+- Correção de causa raiz: fixar o runner em `ubuntu-24.04`.
+- Run 42704295262: **SUCCESS**, extensão pública 2.2.0 com 3/3 testes reais aprovados (Manifest, service worker, popup).
+- Run 42704295753: **SUCCESS**, regressões existentes aprovadas.
+- Incremento posterior: relatórios JSON de falha garantidos para futuras execuções; conferir run do SHA definitivo.
