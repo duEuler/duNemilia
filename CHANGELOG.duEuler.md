@@ -1,5 +1,7 @@
 # duEuler contribution changelog / Registro de alterações
 
+- Fixed / Corrigido: tests/test_i18n_build.py now uses UTF-8 explicitly; Windows CP1252 runner had a reproducible UnicodeDecodeError. Root cause confirmed from CI job logs.
+
 ## 2026-11-09 — Phase 2: UI static controls + WebMCP laboratory
 - Added / Adicionado: 105 English/Portuguese static UI strings; known buttons, labels, options and placeholders.
 - Added / Adicionado: disposable WebMCP tools (read, consequential increment, delay), bilingual lab plans and CI contract checks.
