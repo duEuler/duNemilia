@@ -24,6 +24,9 @@ jobs:
       - name: Launch real MV3 extension (public baseline 2.2)
         run: |
           python tests/extension_smoke.py --zip nemilia-extension.zip --output artifacts/extension-smoke.json
+      - name: Verify real extension tab scripting and navigation isolation
+        run: |
+          python tests/extension_tabs_smoke.py --zip nemilia-extension.zip --output artifacts/extension-tabs.json
       - name: Upload evidence
         if: always()
         uses: actions/upload-artifact@v4
