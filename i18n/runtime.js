@@ -136,7 +136,7 @@
       for(const node of el.childNodes){
         if(node.nodeType!==Node.TEXT_NODE)continue;
         const raw=node.nodeValue||'';
-        const key=raw.trim().replace(/\\s+/g,' ');
+        const key=raw.trim().replace(/\s+/g,' ');
         if(!Object.prototype.hasOwnProperty.call(target,key))continue;
         node.nodeValue=raw.replace(key,target[key]);
       }
@@ -144,7 +144,7 @@
     for(const el of document.querySelectorAll('input[placeholder],textarea[placeholder]')){
       if(el.closest('[data-user-content]'))continue;
       const old=el.getAttribute('placeholder');
-      const key=old&&old.trim().replace(/\\s+/g,' ');
+      const key=old&&old.trim().replace(/\s+/g,' ');
       if(Object.prototype.hasOwnProperty.call(target,key))el.setAttribute('placeholder',target[key]);
     }
   }
