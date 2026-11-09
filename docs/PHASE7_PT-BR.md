@@ -25,3 +25,8 @@ A versão RC 2.3 pode ser analisada **localmente** substituindo `--zip` pelo arq
 2. Validar `consequentialHint`, ferramentas sem hints e consentimento Allow/Deny.
 3. Recarregar aba durante chamadas, iniciar ações simultâneas e conferir IDs de chamada e logs.
 4. Documentar testes de idempotência, cancelamento, falhas ambíguas e origem errada.
+
+## Resultado do laboratório automatizado
+- Run GitHub Actions `42705123950`: **6/6 PASS** em Chromium com a extensão pública 2.2.0.
+- O teste incluiu `chrome.scripting.executeScript` real em abas locais e descarte do documento após navegação.
+- Teste local da candidata 2.3.0: bloqueado pela ausência de service worker observável no Chromium 144; não é evidência de defeito de produto.
