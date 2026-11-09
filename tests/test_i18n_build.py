@@ -9,10 +9,10 @@ class BuildTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=pathlib.Path(d);src=root/'input.html';out=root/'out.html'
             src.write_text('<html><body><div id="sidebar"></div></body></html>',encoding='utf-8')
-            original=src.read_text()
+            original=src.read_text(encoding='utf-8')
             build(src,R/'i18n/runtime.js',out)
-            self.assertEqual(src.read_text(),original)
-            self.assertEqual(out.read_text().count(MARKER),1)
+            self.assertEqual(src.read_text(encoding='utf-8'),original)
+            self.assertEqual(out.read_text(encoding='utf-8').count(MARKER),1)
             with self.assertRaises(ValueError):build(out,R/'i18n/runtime.js',root/'again.html')
     def test_no_source_overwrite(self):
         with tempfile.TemporaryDirectory() as d:
