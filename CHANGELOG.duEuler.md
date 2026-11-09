@@ -1,5 +1,13 @@
 # duEuler contribution changelog / Registro de alterações
 
+## 2026-11-09 — Phase 6: Chromium MV3 smoke / Teste real
+- Added real Playwright MV3 service worker and popup smoke tests for public extension 2.2.0.
+- Fixed GitHub runner compatibility: Ubuntu 26.04 unsupported by Playwright 1.58.0; pinned Ubuntu 24.04.
+- Evidence: GitHub Actions run 42704295262 passed 3/3 extension smoke checks; regression run 42704295753 passed.
+- Hardened failure reporting: JSON artifact now written for browser launch or assertion failures.
+- Private 2.3.0 extension has not passed real Chrome E2E; no private RC source published.
+
+
 ## 2026-11-09 — Phase 5 / Etapa 5
 - Reproduced P5-SEC-001 in isolated private RC 2.3 probe: a synthetic ambiguous error led to two effects; a private fail-closed patch reduced effects to one in 18 scenarios.
 - Added independent WebMCP policy reference, unit tests, private-source path validator, and bilingual security audit.
