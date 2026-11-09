@@ -1,5 +1,12 @@
 # duEuler contribution changelog / Registro de alterações
 
+## 2026-11-09 — Phase 7 / Etapa 7
+- Added actual Chromium MV3 scripting and synthetic tab-isolation test.
+- Checks distinct tabs, correct injection target, no cross-tab state leakage and document replacement after navigation.
+- GitHub Actions run 42705123950: real Chromium MV3 extension 2.2.0 passed all 6/6 synthetic tab isolation checks.
+- No code from privately shared RC 2.3 published. Not equivalent to consent-based WebMCP E2E.
+
+
 ## 2026-11-09 — Phase 6: Chromium MV3 smoke / Teste real
 - Added real Playwright MV3 service worker and popup smoke tests for public extension 2.2.0.
 - Fixed GitHub runner compatibility: Ubuntu 26.04 unsupported by Playwright 1.58.0; pinned Ubuntu 24.04.
