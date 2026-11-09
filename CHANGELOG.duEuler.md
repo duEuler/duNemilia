@@ -1,5 +1,12 @@
 # duEuler contribution changelog / Registro de alterações
 
+## 2026-11-09 — Phase 2: UI static controls + WebMCP laboratory
+- Added / Adicionado: 105 English/Portuguese static UI strings; known buttons, labels, options and placeholders.
+- Added / Adicionado: disposable WebMCP tools (read, consequential increment, delay), bilingual lab plans and CI contract checks.
+- Prototype evidence / Evidência de protótipo: Chromium DOM 15/15 and mock WebMCP 5/5. Not full application E2E.
+- Unverified / Não homologado: real browser consent, exactly-once with extension, full localization, encrypted migration.
+
+
 ## 2026-11-09 — Audit + bilingual navigation pilot
 - Added / Adicionado: `i18n/runtime.js` EN/PT-BR navigation selector, local persistence.
 - Added / Adicionado: `tools/build_i18n.py` offline, reversible HTML build.
