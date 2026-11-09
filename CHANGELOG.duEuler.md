@@ -1,5 +1,12 @@
 # duEuler contribution changelog / Registro de alterações
 
+## 2026-11-09 — Phase 4 / Etapa 4
+- Added / Adicionado: 9 automated isolated WebMCP fixture tests, including missing-hint risk classification.
+- Expanded Windows/Linux CI to run all JS behavioral tests and Python/HTML integrity checks.
+- Added bilingual traceable test protocols and release blockers.
+- Explicit limitation: direct tool-call tests do not prove extension authorization, exactly-once retries or Chrome E2E.
+
+
 ## 2026-11-09 — Phase 3 / Etapa 3
 - Fixed exact navigation label matching, whitespace preservation, asynchronous mutation coalescing and accessible language selector.
 - Added four-tool WebMCP fixture with **missing-hint** scenario, Node behavior tests, and bilingual traceable documentation.
