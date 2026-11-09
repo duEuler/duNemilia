@@ -1,11 +1,12 @@
-name: duNemilia i18n pilot tests
+name: duNemilia regression (EN/PT-BR + WebMCP lab)
 on:
   push:
-    branches: ['feat/**']
+    branches: ['feat/**', 'test/**']
   pull_request:
 jobs:
-  pilot:
+  regression:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -19,16 +20,17 @@ jobs:
           node-version: '22'
       - name: Python unit tests
         run: python -m unittest discover -s tests -v
-      - name: Runtime syntax
+      - name: JavaScript syntax
         run: node --check i18n/runtime.js
-      - name: Behavioral i18n tests
-        run: node --test tests/i18n-runtime.test.cjs
-      - name: Offline single-file pilot build
+      - name: Behavioral localization + simulated WebMCP lab
+        run: node --test tests/*.test.cjs
+      - name: Build reversible localized HTML
         run: python tools/build_i18n.py --input Nemilia-v2_2.html --output dist/Nemilia-v2_2-i18n-pilot.html
-      - name: Verify original integrity
+      - name: Verify original untouched
         shell: python
         run: |
           from pathlib import Path
-          assert Path('Nemilia-v2_2.html').is_file()
-          assert Path('dist/Nemilia-v2_2-i18n-pilot.html').is_file()
-          assert '<!-- duNemilia-i18n-pilot:1 -->' not in Path('Nemilia-v2_2.html').read_text(encoding='utf-8')
+          original=Path('Nemilia-v2_2.html').read_bytes()
+          output=Path('dist/Nemilia-v2_2-i18n-pilot.html').read_bytes()
+          assert b'<!-- duNemilia-i18n-pilot:1 -->' not in original
+          assert output.count(b'<!-- duNemilia-i18n-pilot:1 -->')==1
