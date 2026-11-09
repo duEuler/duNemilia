@@ -21,9 +21,11 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Runtime syntax
         run: node --check i18n/runtime.js
+      - name: Behavioral i18n tests
+        run: node --test tests/i18n-runtime.test.cjs
       - name: Offline single-file pilot build
         run: python tools/build_i18n.py --input Nemilia-v2_2.html --output dist/Nemilia-v2_2-i18n-pilot.html
-      - name: Check original integrity
+      - name: Verify original integrity
         shell: python
         run: |
           from pathlib import Path
